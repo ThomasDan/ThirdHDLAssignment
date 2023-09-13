@@ -21,9 +21,9 @@ CHIP PC {
     Inc16(in=rOut, out=incROut);
     // Determining if should increment or not
     Mux16(a=rOut, b=incROut, sel=inc, out=incOrNot);
-    // Determining if to keep the increment or overwrite with Input instead
+    // Determining if to keep the "increment or existing value" or overwrite with Input instead
     Mux16(a=incOrNot, b=in, sel=load, out=incOrNotOrInput);
-    // Determining if we want to overwrite the other stuff and just reset
+    // Determining if we want to overwrite the other stuff and reset instead
     Mux16(a=incOrNotOrInput, b[0..15]=false, sel=reset, out=incOrNotOrInputOrReset);
     
     // Saving the final result. Either we wanted to do something new to the value, else we'll overwrite it with itself
